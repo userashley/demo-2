@@ -6,7 +6,7 @@ Interfaz de programación de aplicaciones web, es esencialmente un mensajero ent
 Utiliza Spring Initializr para generar un nuevo proyecto Spring Boot con las siguientes dependencias: Web.
 
 ## Spring Initializr
-![Captura de Pantalla de la Aplicación](Postman.png)
+![Captura de Pantalla de la Aplicación](Spring Initialrz.png)
 
 ## Clase Libro 
 En la clase Libro consta de  5 atributos : Id,titulo, autor, editorial y año de publicación.
