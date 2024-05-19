@@ -1,38 +1,78 @@
-## Practica de interface
+## Web Api de Libro
 
-Aquí se presentara la primera interfaz de practica del tercer semestre de la universidad de guayaquil.
+Interfaz de programación de aplicaciones web, es esencialmente un mensajero entre aplicaciones. Permite que diferentes programas de software se comuniquen entre sí proporcionando un conjunto de reglas y especificaciones. Aquí se presentara la segunda interfaz de practica del tercer semestre de la universidad de guayaquil.
 
-## Imagen de ejemplo del Proyecto
+## Inicialización del proyecto
+Utiliza Spring Initializr para generar un nuevo proyecto Spring Boot con las siguientes dependencias: Web.
+
+## Spring Initializr
 ![Captura de Pantalla de la Aplicación](https://github.com/userashley/Proyecto/blob/9ca8398b2c9df6bf86778fae85c8860a8fccba1c/Captura%20de%20pantalla%202024-05-10%20111008.png)
 
-## Panel
-Se agregar un panel principal. Dentro de este se agregaran 2 panel los cuales son panel2 y panel3. Estos panel estaran con codificados con su respectiva posición y tamaño.
-## Label
-Se agregara varias labels al panel2. Con su respectiva posición y tamaño.Finalmente se realizara el llamado con el metodo:
+## Clase Libro 
+En la clase Libro consta de  5 atributos : Id,titulo, autor, editorial y año de publicación.
+Con su respectivo constructor.
+Y los getters y setters.
+## Package com.tuuniversidad.controllers
+### LibroController
+En esta clase consta de anotaciones Spring
+@RestController para indicar que devuelven JSON directamente en lugar de vistas. 
+
+Se utilizan anotaciones como @GetMapping, @PostMapping para mapear métodos a solicitudes HTTP específicas (GET y POST, respectivamente).
+
+GET /libros: Retorna una lista de todos los libros.
+
+GET /libros/{id_libro}: Retorna un libro por el id.
+
+POST /libros: crea un nuevo recurso libro
+
+## Package com.tuuniversidad.repository
+### LibroRepository
+Es una interface
+Donde se encuentran los siguientes métodos :
+
+	    Libro getLibro(Long id);
+            List<Libro> getLibros();
+	    Libro nuevoLibro(Libro libro);
+### LibroRepositoryImp
+Es una clase donde se realiza implementaciones de repositorios personalizados: los desarrolladores pueden crear repositorios personalizados adaptados a necesidades específicas de acceso a datos.
     
-    panel2.getChildren().addAll(label1, label2,label3,label4,label5);
+    public LibroRepositoryImp() {
+		libros.add(new Libro(978-270-800L,"METODOLODIA DE LA PROGRAMACION","CARELIA GUADALUPE","PLAZA Y VALDES","2008"));
+		libros.add(new Libro(978-843-6954-302L,"PROGRAMACION WEB EN JAVA","JOSE MIGUEL ORDAX","EDUCACION.ES","2013"));
+		libros.add(new Libro(978-844-8173-937L,"METODOLODIA DE LA PROGRAMACION","CARELIA GUADALUPE","PLAZA Y VALDES","2008"));	
+	}    
+## Package com.tuuniversidad.service 
+### LibroService
+Es una interface.
+La @Serviceanotación marca la clase como un componente de servicio.
+Se agregan los metodos:
 
-## Image 
-Se crea una Image:
-Este método agrega imágenes a cada label utilizando una URL de imagen. Tiene sus respectivas posiciones y tamaño.
-    
-    Image image = new Image (getClass().getResourceAsStream("/image/imagen1.jpg"));
-## Scrollbar
-Se agrega un scrollbar en la parte izquierda y de manera vertical dentro del panel2.getChildren().add(scrollbar);
+	Libro getLibro(Long id);
+	List<Libro> getLibros();
+	Libro nuevoLibro(Libro libro);
+### LibroServiceImp
+La LibroRepositoryImp se inyecta utilizando Spring Autowired.
+La clase Service típicamente contiene métodos que exponen la funcionalidad del servicio al mundo exterior.
 
-	        ScrollBar scrollbar = new ScrollBar(); 
-	scrollbar.setOrientation(javafx.geometry.Orientation.VERTICAL);
-## ListView
-Se agrega una listView en el panel principal: 
+       private LibroRepository libroRepository;
+		
+	
 
-        ObservableList<String> items = FXCollections.observableArrayList();// Agregar ListView
-            items.addAll("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10" );
-	    ListView<String> listView = new ListView<>(items); 
-Con su respectiva posicion y tamaño: 
+	@Override
+	public Libro getLibro(Long id) {
+		return libroRepository.getLibro(id);
+	}
 
-            listView.setLayoutX(250);
-            listView.setLayoutY(10);
-            listView.setPrefWidth(220);
-            listView.setPrefHeight(220);
-## Textfield
-Se creo un text fiel en el diseño del proyecto , en este código crea un TextField. Se establece su posición vertical y horizontal dentro del Panel3.getChildren().add(textField) para que sea visible en la interfaz de usuario
+	@Override
+	public List<Libro> getLibros() {
+		return libroRepository.getLibros();
+	}
+
+	@Override
+	public Libro nuevoLibro(Libro libro) {
+		return libroRepository.nuevoLibro(libro);
+	}
+ ## Prueba en Postman
+ Postman proporciona herramientas para crear y organizar sus interacciones API en colecciones reutilizables. Puede encadenar solicitudes, administrar entornos con diferentes configuraciones de API y escribir pruebas para garantizar que su API se comporte como se espera.
+ 
+	
