@@ -74,5 +74,5 @@ La clase Service típicamente contiene métodos que exponen la funcionalidad del
 	}
  ## Prueba en Postman
  Postman proporciona herramientas para crear y organizar sus interacciones API en colecciones reutilizables. Puede encadenar solicitudes, administrar entornos con diferentes configuraciones de API y escribir pruebas para garantizar que su API se comporte como se espera.
- 
+ ![Captura de Pantalla de la Aplicación](Postman.png)
 	
